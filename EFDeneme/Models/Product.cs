@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,38 +18,33 @@ namespace EFDeneme.Models
 
         public Category Category { get; set; }
 
-        public int? CategoryId { get; set; }
+        public int CategoryId { get; set; }
 
-        public decimal? UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
 
         [NotMapped]  // veya bunu yazmayıp set{ } koyacaktık
         public string ProductNameWithPrice
         {
             get
             {
-                if (UnitPrice.HasValue)
-                {
-                    return ProductName + " --> " + UnitPrice.Value.ToString("C",
-                        System.Globalization.CultureInfo.GetCultureInfo("tr-tr"));
-
-                }
-                return ProductName;
+                    return ProductName + " --> "
+                    + UnitPrice.ToString("C", CultureInfo.GetCultureInfo("tr-tr"));
             }
         }
 
-
+        /*
         public override string ToString()
         {
-            if (UnitPrice.HasValue)
-            {
-                return ProductName + " --> " + UnitPrice.Value.ToString("C",
-                    System.Globalization.CultureInfo.GetCultureInfo("tr-tr"));
+           //if (UnitPrice.HasValue)
+            //{
+               // return ProductName + " --> " + UnitPrice.Value.ToString("C",
+               //     System.Globalization.CultureInfo.GetCultureInfo("tr-tr"));
 
 
-            }
-            return ProductName;
+            //}
+           // return ProductName;
         }
 
-
+     */
     }
 }

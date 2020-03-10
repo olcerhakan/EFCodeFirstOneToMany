@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EFDeneme.Models
 {
-    public class MyInitDb : DropCreateDatabaseAlways<PazarContext>
+    public class MyInitDb : DropCreateDatabaseIfModelChanges<PazarContext>
     {
         protected override void Seed(PazarContext context)
         {
@@ -22,11 +22,11 @@ namespace EFDeneme.Models
                 CategoryName="Snacks",
                 Products=new List<Product>
                 { new Product { ProductName="Cips",UnitPrice=7.99m},
-                new Product { ProductName="Nuts"} }
+                new Product { ProductName="Nuts", UnitPrice=5.99m} }
             });
             context.Categories.Add(new Category
             {
-                CategoryName = "Electronics",
+                CategoryName = "Electronics"
                 
             });
         }
